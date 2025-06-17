@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Amazon Q - Transformação Digital Completa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Container principal para navegação */
+        .presentation-container {
+            height: 100vh;
+            height: 100dvh; /* Dynamic viewport height para mobile */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slides-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+            will-change: transform; /* Otimização de performance */
+        }
+
+        .slide {
+            min-width: 100vw;
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: clamp(1rem, 4vw, 2rem);
+            flex-shrink: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        /* Indicador de slide */
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.6;
+            z-index: 100;
+        }
+
+        /* Slide 1 - Hero Ultra Impactante */
+        .hero-slide {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a3a2a 100%);
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            max-width: 1200px;
+        }
+
+        .hero-tagline {
+            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.4;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .price-label {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .price-hero {
+            font-size: clamp(5rem, 18vw, 10rem);
+            font-weight: 900;
+            background: linear-gradient(45deg, #00ff88, #00cc66, #00ff88);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 3s ease infinite, pulse 2s ease-in-out infinite;
+            margin-bottom: 1rem;
+            line-height: 0.9;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                transform: scale(1);
+                filter: drop-shadow(0 0 40px rgba(0, 255, 136, 0.5));
+            }
+            50% { 
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 60px rgba(0, 255, 136, 0.8));
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid #00ff88;
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .badge:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .badge:hover {
+            background: rgba(0, 255, 136, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.5rem 4rem;
+            background: #00ff88;
+            color: #0a0a0a;
+            font-size: 1.8rem;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .cta-button:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 50px rgba(0, 255, 136, 0.8);
+        }
+
+        /* Slide 2 - Oferta Irresistível */
+        .offer-slide {
+            background: #0f0f0f;
+        }
+
+        .offer-container {
+            max-width: 1200px;
+            text-align: center;
+        }
+
+        .offer-header {
+            margin-bottom: 4rem;
+        }
+
+        .offer-comparison {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: stretch;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .offer-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 3rem;
+            flex: 1;
+            min-width: 300px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer-card.featured {
+            border-color: #00ff88;
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(0, 255, 136, 0.3);
+        }
+
+        .offer-card.featured::before {
+            content: 'MELHOR OFERTA';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: #00ff88;
+            color: #0a0a0a;
+            padding: 0.5rem 3rem;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .offer-price {
+            font-size: 4rem;
+            font-weight: 900;
+            margin: 1rem 0;
+        }
+
+        .offer-price.old {
+            text-decoration: line-through;
+            opacity: 0.5;
+            font-size: 2.5rem;
+        }
+
+        .offer-price.new {
+            color: #00ff88;
+            animation: glow 2s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 30px rgba(0, 255, 136, 0.6));
+        }
+
+        .price-prefix {
+            font-size: 1.2rem;
+            font-weight: 300;
+            display: block;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.5)); }
+            to { filter: drop-shadow(0 0 30px rgba(0, 255, 136, 0.8)); }
+        }
+
+        /* Slide 3 - Planos */
+        .plans-slide {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .plans-container {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .plans-grid {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            justify-content: center;
+            align-items: stretch;
+            flex-wrap: nowrap;
+            padding: 2rem 1rem;
+        }
+
+        .plan-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            min-width: 280px;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(0);
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: rgba(0, 255, 136, 0.5);
+            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.3);
+            background: rgba(0, 255, 136, 0.08);
+        }
+
+        .plan-card.featured {
+            background: rgba(0, 255, 136, 0.05);
+            border-color: #00ff88;
+            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.2);
+        }
+
+        .plan-card.featured:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.4);
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .plan-card.featured::before {
+            content: 'MAIS POPULAR';
+            position: absolute;
+            top: 15px;
+            right: -35px;
+            background: #00ff88;
+            color: #0a0a0a;
+            padding: 0.3rem 3rem;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 0.7rem;
+        }
+
+        .plan-name {
+            font-size: clamp(1.3rem, 2vw, 1.6rem);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .plan-price {
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-price-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.3rem;
+        }
+
+        .plan-price-value {
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            font-weight: 900;
+            color: #00ff88;
+            line-height: 1;
+        }
+
+        .plan-benefits {
+            text-align: left;
+            list-style: none;
+            padding: 0;
+            flex-grow: 1;
+        }
+
+        .plan-benefits li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            font-size: clamp(0.85rem, 1.5vw, 1rem);
+            line-height: 1.4;
+        }
+
+        .plan-benefits li:last-child {
+            border-bottom: none;
+        }
+
+        .plan-benefits li::before {
+            content: '✓';
+            color: #00ff88;
+            font-weight: bold;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .plan-card:nth-child(1) .plan-name {
+            color: #87CEEB;
+        }
+
+        .plan-card:nth-child(2) .plan-name {
+            color: #FFD700;
+        }
+
+        .plan-card:nth-child(3) .plan-name {
+            color: #9370DB;
+        }
+
+        /* Responsivo para telas menores */
+        @media (max-width: 1024px) {
+            .plans-grid {
+                gap: 1rem;
+                padding: 1.5rem 0.5rem;
+            }
+            
+            .plan-card {
+                min-width: 250px;
+                padding: 1.2rem;
+            }
+            
+            .plan-card:hover {
+                transform: translateY(-3px) scale(1.01);
+            }
+            
+            .plan-card.featured:hover {
+                transform: translateY(-5px) scale(1.02);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: clamp(1.5rem, 5vw, 2rem);
+                margin-bottom: 1.5rem;
+            }
+            
+            .plans-grid {
+                gap: 0.8rem;
+                margin-top: 1rem;
+            }
+            
+            .plan-card {
+                min-width: 220px;
+                padding: 1rem;
+            }
+            
+            .plan-benefits li {
+                font-size: 0.8rem;
+                padding: 0.4rem 0;
+            }
+        }
+
+        /* Slide 4 - Benefícios Rápidos */
+        .benefits-slide {
+            background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefit-item {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-10px);
+            border-color: #00ff88;
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .benefit-title {
+            font-size: 1.5rem;
+            color: #00ff88;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Slide 5 - Implementação Express */
+        .implementation-slide {
+            background: #0a0a0a;
+        }
+
+        .timeline-express {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .express-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .express-time {
+            font-size: clamp(4rem, 10vw, 6rem);
+            font-weight: 900;
+            color: #00ff88;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .express-steps {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .express-step {
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .express-step:hover {
+            transform: translateX(20px);
+            box-shadow: -20px 0 40px rgba(0, 255, 136, 0.2);
+        }
+
+        .step-number {
+            background: #00ff88;
+            color: #0a0a0a;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Slide 6 - CTA Final - CORRIGIDO */
+        .final-cta-slide {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a3a2a 100%);
+            text-align: center;
+            padding: clamp(1rem, 2vh, 2rem);
+            overflow-y: auto;
+        }
+
+        .final-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 85vh;
+            gap: clamp(0.5rem, 1.5vh, 1rem);
+        }
+
+        .final-title {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            text-shadow: 0 0 40px rgba(0, 255, 136, 0.5);
+            margin-bottom: clamp(0.5rem, 1vh, 1rem);
+        }
+
+        .final-offer {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            padding: clamp(1rem, 2vh, 2rem);
+            backdrop-filter: blur(10px);
+            border: 3px solid #00ff88;
+            margin: clamp(0.5rem, 1vh, 1rem) 0;
+        }
+
+        .final-price {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            color: #00ff88;
+            margin: clamp(0.3rem, 1vh, 0.8rem) 0;
+            filter: drop-shadow(0 0 40px rgba(0, 255, 136, 0.7));
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .final-benefits {
+            text-align: left;
+            display: inline-block;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            margin: clamp(0.5rem, 1vh, 1rem) 0;
+        }
+
+        .final-benefits li {
+            margin-bottom: 0.3rem;
+        }
+
+        .final-contact {
+            margin-top: clamp(0.5rem, 1vh, 1rem);
+            opacity: 0.8;
+        }
+
+        .final-contact p {
+            margin-bottom: 0.3rem;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+        }
+
+        .final-disclaimer {
+            margin-top: clamp(0.3rem, 0.5vh, 0.5rem);
+            font-size: clamp(0.7rem, 1.5vw, 0.8rem);
+            opacity: 0.7;
+        }
+
+        .logo {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 100;
+            opacity: 0.8;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .highlight {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        /* Animações de entrada */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive - Melhorado */
+        @media (max-width: 768px) {
+            .price-hero {
+                font-size: clamp(8rem, 25vw, 12rem);
+            }
+            
+            .hero-tagline {
+                padding: 0 1rem;
+            }
+            
+            .offer-comparison {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .offer-card.featured {
+                transform: scale(1);
+            }
+            
+            .express-time {
+                font-size: clamp(3rem, 12vw, 5rem);
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .badge {
+                font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+                padding: 0.8rem 1.5rem;
+            }
+
+            .final-offer {
+                padding: 1.5rem;
+            }
+
+            .slide {
+                padding: 1rem;
+            }
+            
+            .section-title {
+                font-size: clamp(1.5rem, 6vw, 2.5rem);
+            }
+            
+            .keyboard-hint {
+                display: none;
+            }
+
+            .final-cta-slide {
+                padding: 1rem;
+            }
+        }
+
+        /* Tablets e telas médias */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .offer-card {
+                min-width: 250px;
+            }
+        }
+
+        /* Telas muito pequenas */
+        @media (max-width: 480px) {
+            .hero-badges {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .badge {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .cta-button {
+                font-size: 1.2rem;
+                padding: 1rem 2rem;
+            }
+        }
+
+        /* Suporte para navegadores antigos */
+        @supports not (height: 100dvh) {
+            .presentation-container,
+            .slide {
+                height: 100vh;
+            }
+        }
+
+        /* Fix para Safari iOS */
+        @supports (-webkit-touch-callout: none) {
+            .slide {
+                min-height: -webkit-fill-available;
+            }
+        }
+
+        /* Dicas de teclado */
+        .keyboard-hint {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo -->
+    <div class="logo">
+        <svg width="150" height="50" viewBox="0 0 150 50">
+            <text x="0" y="35" fill="#00ff88" font-size="24" font-weight="bold">DAREDE</text>
+            <text x="0" y="48" fill="#ffffff" font-size="12">à nuvem</text>
+        </svg>
+    </div>
+
+    <!-- Indicador de Slide -->
+    <div class="slide-indicator">
+        <span id="current-slide">1</span> / <span id="total-slides">6</span>
+    </div>
+
+    <!-- Container Principal -->
+    <div class="presentation-container">
+        <div class="slides-wrapper" id="slides-wrapper">
+            <!-- Slide 1: Hero Ultra Impactante -->
+            <section class="slide hero-slide">
+                <div class="hero-content">
+                    <p class="hero-tagline fade-in" style="font-size: clamp(1.2rem, 3vw, 1.8rem); margin-bottom: 2rem; opacity: 0.9;">
+                        <span class="highlight">Seu assistente empresarial completo e seguro</span> que integra seus dados
+                    </p>
+                    <div class="price-label fade-in">A partir de</div>
+                    <div class="price-hero">R$199/mês</div>
+                    <h1 class="hero-title fade-in" style="animation-delay: 0.2s">
+                        Seu agente de IA pelo Preço de 1 Cafézinho por Dia
+                    </h1>
+                    <div class="hero-badges fade-in" style="animation-delay: 0.4s">
+                        <div class="badge">🤖 Agente de Negócios</div>
+                        <div class="badge">💻 Agente de Desenvolvimento</div>
+                    </div>
+                    <div class="fade-in" style="animation-delay: 0.6s">
+                        <a href="#" class="cta-button">QUERO AGORA!</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 2: Oferta Irresistível -->
+            <section class="slide offer-slide">
+                <div class="offer-container">
+                    <div class="offer-header">
+                        <h2 class="section-title">A Oferta Que Vai <span class="highlight">Revolucionar</span> Sua Empresa</h2>
+                    </div>
+                    <div class="offer-comparison">
+                        <div class="offer-card">
+                            <h3>Separadamente</h3>
+                            <span class="price-prefix">A partir de</span>
+                            <div class="offer-price old">R$400</div>
+                            <p>Amazon Q Business: A partir de R$200/mês</p>
+                            <p>Amazon Q Developer: A partir de R$200/mês</p>
+                        </div>
+                        <div class="offer-card featured">
+                            <h3>OFERTA ESPECIAL</h3>
+                            <span class="price-prefix">A partir de</span>
+                            <div class="offer-price new">R$199</div>
+                            <p>✅ Inteligência GPT integrada ao seu negócio</p>
+                            <p>✅ Respostas inteligentes 24/7</p>
+                            <p>✅ Implementação em 48h</p>
+                            <p style="margin-top: 1rem; font-size: 1.5rem; color: #00ff88;">
+                                Economia de até 67%!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 3: Planos -->
+            <section class="slide plans-slide">
+                <div class="plans-container">
+                    <h2 class="section-title">Conheça nossos <span class="highlight">Planos</span></h2>
+                    <div class="plans-grid">
+                        <!-- Plano Assistente GPT -->
+                        <div class="plan-card">
+                            <h3 class="plan-name">🤖 Assistente GPT</h3>
+                            <div class="plan-price">
+                                <p class="plan-price-label">A partir de</p>
+                                <p class="plan-price-value">R$ 199,90</p>
+                            </div>
+                            <ul class="plan-benefits">
+                                <li>Inteligência GPT integrada ao seu negócio</li>
+                                <li>Respostas inteligentes 24/7</li>
+                                <li>Consultoria Darede</li>
+                            </ul>
+                        </div>
+
+                        <!-- Plano Assistente Gold -->
+                        <div class="plan-card featured">
+                            <h3 class="plan-name">⭐ Assistente Gold</h3>
+                            <div class="plan-price">
+                                <p class="plan-price-label">A partir de</p>
+                                <p class="plan-price-value">R$ 999,90</p>
+                            </div>
+                            <ul class="plan-benefits">
+                                <li><strong>Tudo do Assistente GPT</strong></li>
+                                <li>Amazon Q Business </li>
+                                <li>Integração com 40+ sistemas</li>
+                                <li>Análise de documentos empresariais</li>
+                                <li>Treinamento personalizado da equipe</li>
+                            </ul>
+                        </div>
+
+                        <!-- Plano Assistente Pro -->
+                        <div class="plan-card">
+                            <h3 class="plan-name">🚀 Assistente Pro</h3>
+                            <div class="plan-price">
+                                <p class="plan-price-label">A partir de</p>
+                                <p class="plan-price-value">R$ 1.199,90</p>
+                            </div>
+                            <ul class="plan-benefits">
+                                <li><strong>Tudo do Assistente Gold</strong></li>
+                                <li>Amazon Q Developer incluído</li>
+                                <li>Geração de código com IA</li>
+                                <li>Automação de processos avançada</li>
+                                <li>Consultoria Especializada </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 4: Benefícios Rápidos -->
+            <section class="slide benefits-slide">
+                <div>
+                    <h2 class="section-title">O Que Você <span class="highlight">Ganha</span> Imediatamente</h2>
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <span class="benefit-icon">🚀</span>
+                            <h3 class="benefit-title">Produtividade 3x</h3>
+                            <p>Automatize tarefas repetitivas instantaneamente</p>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">💡</span>
+                            <h3 class="benefit-title">IA no Seu Negócio</h3>
+                            <p>Respostas inteligentes para toda equipe</p>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">⚡</span>
+                            <h3 class="benefit-title">Código 50% Mais Rápido</h3>
+                            <p>Desenvolvimento acelerado com IA</p>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">🔗</span>
+                            <h3 class="benefit-title">40+ Integrações</h3>
+                            <p>Conecta com todos seus sistemas</p>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">🛡️</span>
+                            <h3 class="benefit-title">Segurança AWS</h3>
+                            <p>Proteção enterprise</p>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">📈</span>
+                            <h3 class="benefit-title">ROI Imediato</h3>
+                            <p>Retorno desde o primeiro dia</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 5: Implementação Express -->
+            <section class="slide implementation-slide">
+                <div class="timeline-express">
+                    <div class="express-header">
+                        <h2 class="section-title">Implementação <span class="highlight">Express</span></h2>
+                        <div class="express-time">48h</div>
+                        <p style="font-size: 1.5rem; opacity: 0.8;">Do contrato ao GO LIVE!</p>
+                    </div>
+                    <div class="express-steps">
+                        <div class="express-step">
+                            <div class="step-number">1</div>
+                            <div>
+                                <h3>Hoje - Assinatura</h3>
+                                <p>Assinaturas e formalizações</p>
+                            </div>
+                        </div>
+                        <div class="express-step">
+                            <div class="step-number">2</div>
+                            <div>
+                                <h3>24h - Setup Completo</h3>
+                                <p>Configuração e integrações</p>
+                            </div>
+                        </div>
+                        <div class="express-step">
+                            <div class="step-number">3</div>
+                            <div>
+                                <h3>48h - Equipe Usando!</h3>
+                                <p>100% operacional e produtivo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 6: CTA Final - CORRIGIDO -->
+            <section class="slide final-cta-slide">
+                <div class="final-content">
+                    <h2 class="final-title">Última Chance!</h2>
+                    <div class="final-offer">
+                        <p style="font-size: clamp(1rem, 2.5vw, 1.3rem); margin-bottom: 0.8rem;">
+                            🔥 Oferta Exclusiva 2025 🔥
+                        </p>
+                        <span class="price-prefix">A partir de</span>
+                        <div class="final-price">R$199/mês</div>
+                        <p style="font-size: clamp(1.2rem, 3vw, 1.5rem); margin-bottom: clamp(0.8rem, 1.5vh, 1.2rem);">
+                            2 Agentes de IA
+                        </p>
+                        <ul class="final-benefits">
+                            <li>✅ Inteligência GPT integrada ao seu negócio</li>
+                            <li>✅ Um verdadeiro assistente profissional</li>
+                            <li>✅ Disponível 24 horas por dia</li>
+                            <li>✅ Planos escaláveis conforme necessidade</li>
+                            <li>✅ Segurança para você e para o seu negócio</li>
+                        </ul>
+                    </div>
+                    <a href="mailto:comercial@darede.com.br" class="cta-button">
+                        CONTATE-NOS
+                    </a>
+                    <div class="final-contact">
+                        <p>📧 comercial@darede.com.br</p>
+                        <p>📞 +55 (11) 3900-1010</p>
+                        <p class="final-disclaimer">
+                            *Valores a partir de R$199/mês. Consulte opções de planos.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Dica de Teclado -->
+    <div class="keyboard-hint">
+        Use ← → ou Espaço
+    </div>
+
+    <script>
+        // Configuração da apresentação
+        let currentSlide = 0;
+        const totalSlides = 6;
+        const slidesWrapper = document.getElementById('slides-wrapper');
+        const currentSlideSpan = document.getElementById('current-slide');
+        const totalSlidesSpan = document.getElementById('total-slides');
+
+        // Atualizar total de slides
+        totalSlidesSpan.textContent = totalSlides;
+
+        // Função para ir para um slide específico
+        function goToSlide(index) {
+            if (index < 0) index = totalSlides - 1;
+            if (index >= totalSlides) index = 0;
+            
+            currentSlide = index;
+            slidesWrapper.style.transform = `translateX(-${currentSlide * 100}vw)`;
+            
+            // Atualizar indicador
+            currentSlideSpan.textContent = currentSlide + 1;
+        }
+
+        // NAVEGAÇÃO POR TECLADO - CORRIGIDA
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                goToSlide(currentSlide - 1);
+            } else if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                goToSlide(currentSlide + 1);
+            } else if (e.key === 'Home') {
+                goToSlide(0);
+            } else if (e.key === 'End') {
+                goToSlide(totalSlides - 1);
+            } else if (e.key >= '1' && e.key <= '6') {
+                goToSlide(parseInt(e.key) - 1);
+            }
+        });
+
+        // Navegação por touch/swipe
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                goToSlide(currentSlide + 1); // Swipe left - próximo
+            }
+            if (touchEndX > touchStartX + 50) {
+                goToSlide(currentSlide - 1); // Swipe right - anterior
+            }
+        }
+
+        // Navegação por scroll do mouse
+        let scrollTimeout;
+        document.addEventListener('wheel', (e) => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                if (e.deltaY > 0) {
+                    goToSlide(currentSlide + 1);
+                } else {
+                    goToSlide(currentSlide - 1);
+                }
+            }, 50);
+        });
+
+        // Partículas de fundo animadas
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.width = '4px';
+            particle.style.height = '4px';
+            particle.style.background = '#00ff88';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.opacity = Math.random() * 0.5;
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = window.innerHeight + 'px';
+            particle.style.zIndex = '1';
+            document.body.appendChild(particle);
+
+            const duration = Math.random() * 3000 + 2000;
+            particle.animate([
+                { transform: 'translateY(0) translateX(0)' },
+                { transform: `translateY(-${window.innerHeight + 100}px) translateX(${(Math.random() - 0.5) * 200}px)` }
+            ], {
+                duration: duration,
+                easing: 'linear'
+            }).onfinish = () => particle.remove();
+        }
+
+        // Criar partículas periodicamente
+        setInterval(createParticle, 300);
+
+        // Esconder dica de teclado após 5 segundos
+        setTimeout(() => {
+            document.querySelector('.keyboard-hint').style.opacity = '0';
+        }, 5000);
+
+        // Atalho para modo fullscreen com F11
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'F11') {
+                e.preventDefault();
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen();
+                } else {
+                    document.exitFullscreen();
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
