@@ -12,49 +12,55 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            min-width: 0;
+            min-height: 0;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #0a0a0a;
             color: #ffffff;
-            overflow: hidden;
             height: 100vh;
             height: 100dvh;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            width: 100vw;
+            max-width: 100vw;
         }
 
         /* Container principal para navegação */
         .presentation-container {
-            height: 100vh;
-            height: 100dvh;
-            overflow: hidden;
+            height: calc(var(--vh, 1vh) * 100);
             position: relative;
-            width: 100vw;
+            width: 100%;
+            max-width: 100vw;
         }
-        image.png
+
         .slides-wrapper {
             display: flex;
-            transition: transform 0.5s ease-in-out;
             height: 100%;
+            width: 100%;
             will-change: transform;
+            transition: transform 0.5s ease-in-out;
+            max-width: 100vw;
         }
 
         .slide {
-            min-width: 100vw;
-            width: 100vw;
-            height: 100vh;
-            height: 100dvh;
+            min-width: 100%;
+            width: 100%;
+            flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             padding: clamp(0.5rem, 2vw, 2rem);
-            flex-shrink: 0;
             overflow-y: auto;
             overflow-x: hidden;
             -webkit-overflow-scrolling: touch;
+            min-height: calc(var(--vh, 1vh) * 100);
+            height: auto;
+            box-sizing: border-box;
         }
 
         /* Indicador de slide */
@@ -82,6 +88,7 @@
             position: relative;
             max-width: min(1200px, 95vw);
             width: 100%;
+            max-width: 100vw;
         }
 
         .hero-tagline {
@@ -190,6 +197,8 @@
             position: relative;
             overflow: hidden;
             margin-top: clamp(1rem, 3vw, 2rem);
+            min-height: 44px;
+            min-width: 44px;
         }
 
         .cta-button::before {
@@ -224,6 +233,7 @@
             max-width: min(1400px, 95vw);
             width: 100%;
             padding: clamp(1rem, 3vw, 2rem);
+            max-width: 100vw;
         }
 
         .evolution-content {
@@ -241,6 +251,9 @@
             flex-wrap: nowrap;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: #00ff88 rgba(255,255,255,0.1);
+            scroll-behavior: smooth;
         }
 
         .evolution-line {
@@ -284,6 +297,9 @@
         .stage-icon svg {
             width: 100%;
             height: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
         }
 
         .stage-title {
@@ -333,8 +349,11 @@
         }
 
         .evolution-arrow svg {
-            width: clamp(30px, 6vw, 40px);
-            height: clamp(30px, 6vw, 40px);
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
             animation: arrowPulse 2s ease-in-out infinite;
         }
 
@@ -358,6 +377,7 @@
             max-width: min(1200px, 95vw);
             text-align: center;
             width: 100%;
+            max-width: 100vw;
         }
 
         .offer-header {
@@ -449,6 +469,7 @@
             max-width: min(1400px, 95vw);
             width: 100%;
             margin: 0 auto;
+            max-width: 100vw;
         }
 
         .plans-grid {
@@ -461,6 +482,9 @@
             padding: clamp(1rem, 3vw, 2rem) clamp(0.5rem, 2vw, 1rem);
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: #00ff88 rgba(255,255,255,0.1);
+            scroll-behavior: smooth;
         }
 
         .plan-card {
@@ -584,6 +608,8 @@
         }
 
         .benefits-grid {
+            min-width: 0;
+            overflow-x: auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
             gap: clamp(1rem, 3vw, 2rem);
@@ -633,6 +659,7 @@
             max-width: min(800px, 95vw);
             margin: 0 auto;
             width: 100%;
+            max-width: 100vw;
         }
 
         .express-header {
@@ -714,6 +741,7 @@
             min-height: 85vh;
             gap: clamp(0.5rem, 1.5vh, 1rem);
             width: 100%;
+            max-width: 100vw;
         }
 
         .final-title {
@@ -785,6 +813,7 @@
             width: 100%;
             height: auto;
             display: block;
+            max-width: 100%;
         }
 
         .section-title {
@@ -815,72 +844,126 @@
 
         /* Mobile - Smartphones */
         @media (max-width: 480px) {
-            .slide {
-                padding: 0.5rem;
+            .slides-wrapper {
+                display: block !important;
+                width: 100% !important;
+                min-width: 0 !important;
+                max-width: 100% !important;
+                overflow-x: hidden !important;
+                transform: none !important;
             }
-
+            .slide {
+                display: block !important;
+                width: 100% !important;
+                min-width: 0 !important;
+                max-width: 100% !important;
+                position: static !important;
+                flex-shrink: 1 !important;
+                overflow-x: hidden !important;
+            }
+            .plan-card,
+            .benefit-item,
+            .evolution-stage,
+            .badge,
+            .offer-card,
+            .final-offer {
+                width: 100% !important;
+                max-width: 100% !important;
+                min-width: 0 !important;
+                box-sizing: border-box !important;
+                overflow: hidden !important;
+            }
+            .plan-card > *,
+            .benefit-item > *,
+            .evolution-stage > *,
+            .badge > *,
+            .offer-card > *,
+            .final-offer > * {
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            img, svg {
+                max-width: 100% !important;
+                height: auto !important;
+                display: block !important;
+                overflow: hidden !important;
+            }
+            body, html {
+                overflow-x: hidden !important;
+            }
             .hero-badges {
                 flex-direction: column;
                 gap: 0.8rem;
                 align-items: center;
             }
-            
             .badge {
                 width: 90%;
                 max-width: 280px;
                 text-align: center;
             }
-            
             .cta-button {
                 font-size: 1rem;
                 padding: 0.8rem 2rem;
             }
-
             .evolution-path {
                 flex-direction: column;
                 overflow-x: visible;
-                padding: 1rem 0;
+                padding: 0 0 0 0;
+                padding: 0.5rem 0;
+                max-width: 100vw;
             }
-
             .evolution-stage {
                 width: 100%;
-                max-width: 320px;
+                max-width: 100%;
+                min-width: 0;
+                padding: 0.7rem;
+                margin-bottom: 1rem;
             }
-
             .evolution-arrow {
                 transform: rotate(90deg);
                 margin: 0;
             }
-
             .evolution-line {
                 display: none;
             }
-
             .offer-comparison {
                 flex-direction: column;
             }
-
             .offer-card.featured {
                 transform: scale(1);
             }
-
             .plans-grid {
                 padding: 0.5rem;
                 gap: 0.5rem;
+                flex-direction: column;
+                overflow-x: auto;
+                max-width: 100vw;
+                min-width: 0;
             }
-
             .plan-card {
-                min-width: 240px;
+                min-width: 0;
+                max-width: 100%;
+                margin-bottom: 1rem;
             }
-
             .final-offer {
                 padding: 1rem;
                 width: 95%;
             }
-
             .you-are-here {
                 font-size: 0.7rem;
                 padding: 0.3rem 1rem;
+            }
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                max-width: 100vw;
+                min-width: 0;
+                padding: 0.5rem;
+                gap: 0.7rem;
+            }
+            .benefit-item {
+                max-width: 100%;
+                min-width: 0;
+                padding: 0.7rem;
             }
         }
 
@@ -889,37 +972,39 @@
             .evolution-path {
                 flex-direction: column;
                 overflow-x: visible;
+                max-width: 100vw;
             }
-
             .evolution-stage {
                 width: 100%;
-                max-width: 500px;
+                max-width: 100%;
+                min-width: 0;
+                padding: 1rem;
+                margin-bottom: 1rem;
             }
-
             .evolution-arrow {
                 transform: rotate(90deg);
             }
-
             .evolution-line {
                 display: none;
             }
-
             .offer-card.featured {
                 transform: scale(1.02);
             }
-
             .benefits-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr 1fr;
+                max-width: 100vw;
+                min-width: 0;
+                gap: 0.7rem;
             }
-
             .plans-grid {
-                overflow-x: scroll;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: thin;
+                overflow-x: auto;
+                max-width: 100vw;
+                min-width: 0;
+                flex-direction: row;
             }
-
             .plan-card {
-                min-width: 280px;
+                min-width: 220px;
+                max-width: 100%;
             }
         }
 
@@ -1161,25 +1246,48 @@
             50% { transform: translateX(-50%) translateY(-10px); }
         }
 
-        /* Garantir que o conteúdo não seja cortado */
-        * {
-            min-width: 0;
-            min-height: 0;
+        html {
+            scroll-behavior: smooth;
         }
-
-        /* Prevenir zoom indesejado em inputs mobile */
-        input, select, textarea {
-            font-size: 16px;
+        a:focus, button:focus, .cta-button:focus {
+            outline: 2px solid #00ff88;
+            outline-offset: 2px;
         }
+        .cta-button, .badge, button, a {
+            min-height: 44px;
+            min-width: 44px;
+        }
+        body, input, select, textarea {
+            font-size: min(16px, 4vw);
+        }
+        .evolution-path, .plans-grid {
+            scrollbar-width: thin;
+            scrollbar-color: #00ff88 rgba(255,255,255,0.1);
+            scroll-behavior: smooth;
+        }
+        .evolution-path::-webkit-scrollbar,
+        .plans-grid::-webkit-scrollbar {
+            height: 6px;
+        }
+        .evolution-path::-webkit-scrollbar-thumb,
+        .plans-grid::-webkit-scrollbar-thumb {
+            background: #00ff88;
+            border-radius: 3px;
+        }
+        .logo img { aria-label: "Logo Darede"; }
+        .cta-button { aria-label: "Chamada para ação: Quero Agora!"; }
 
-        /* Melhorar touch targets em mobile */
-        @media (pointer: coarse) {
-            .cta-button,
-            .badge {
-                min-height: 44px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+        @media (max-width: 768px) {
+            .plans-grid,
+            .evolution-path {
+                overflow-x: auto;
+                max-width: 100vw;
+                flex-direction: column;
+            }
+            .plan-card,
+            .evolution-stage {
+                min-width: 0;
+                max-width: 100%;
             }
         }
     </style>
@@ -1574,35 +1682,6 @@
             }, 50);
         }, { passive: false });
 
-        // Partículas de fundo animadas
-        /*function createParticle() {
-            const particle = document.createElement('div');
-            particle.style.position = 'fixed';
-            particle.style.width = '4px';
-            particle.style.height = '4px';
-            particle.style.background = '#00ff88';
-            particle.style.borderRadius = '50%';
-            particle.style.pointerEvents = 'none';
-            particle.style.opacity = Math.random() * 0.5;
-            particle.style.left = Math.random() * window.innerWidth + 'px';
-            particle.style.top = window.innerHeight + 'px';
-            particle.style.zIndex = '1';
-            document.body.appendChild(particle);
-
-            const duration = Math.random() * 3000 + 2000;
-            particle.animate([
-                { transform: 'translateY(0) translateX(0)' },
-                { transform: `translateY(-${window.innerHeight + 100}px) translateX(${(Math.random() - 0.5) * 200}px)` }
-            ], {
-                duration: duration,
-                easing: 'linear'
-            }).onfinish = () => particle.remove();
-        }
-
-        // Criar partículas periodicamente (menos em mobile para performance)
-        const isMobile = window.innerWidth <= 768;
-        setInterval(createParticle, isMobile ? 600 : 300);
-*/
         // Esconder dica de teclado após 5 segundos
         setTimeout(() => {
             const hint = document.querySelector('.keyboard-hint');
