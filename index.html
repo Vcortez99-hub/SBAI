@@ -807,6 +807,13 @@
             display: flex;
             align-items: center;
             justify-content: flex-end;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            opacity: 1;
+            transform: scale(1.05);
         }
 
         .logo img {
@@ -1294,7 +1301,7 @@
 </head>
 <body>
     <!-- Logo -->
-    <div class="logo">
+    <div class="logo" onclick="window.open('https://www.darede.com.br/', '_blank')">
         <img src="https://i.ibb.co/QvP3HK6n/logo-darede.png" alt="logo-darede">
     </div>
 
